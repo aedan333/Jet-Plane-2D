@@ -1,6 +1,6 @@
 # Blocky-Airplane-Tree
 
-Blocky Airplane Tree is a simple layout game about airplanes. Use the arrow keys to control the plane and avoid the obst
+Blocky Airplane Tree is a simple layout game about airplanes. Use the arrow keys to control the plane and avoid the obstacles.
 
 
 
