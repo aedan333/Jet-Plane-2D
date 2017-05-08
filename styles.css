@@ -1,6 +1,6 @@
 body, html {
 	margin: 0px;
-	background: blue;
+	background: lime;
 }
 
 header {
@@ -9,7 +9,7 @@ header {
 	padding: 0.1px;
 }
 
-h1:hover {	
+h2:hover {	
 	background-color: rgb(0, 255, 199);
 }
 
@@ -28,7 +28,7 @@ ul li {
 }
 
 .help:hover {
-	background-color: rgb(0, 255, 199);	
+	background-color: rgb(0, 255, 199);
 }
 
 .help {
@@ -39,4 +39,23 @@ ul li {
 
 .btn-text {
 	color: white;
+}
+
+#title {
+	display: inline-block;
+	padding: 1px;
+	margin: 0px;
+	color: white;
+}
+
+footer {
+	position: absolute;
+	top: 98%;
+	left: 50%;
+	right: 50%;
+	bottom: 0%;
+	width: 100%;
+	max-width: 350px;
+	transform: translate(-50%,-50%);
+	color: #777;
 }
