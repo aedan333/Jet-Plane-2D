@@ -99,7 +99,11 @@ function draw(){
 	//CHECK IF THE PLANE HAS TOUCHED THE AIRPORT
 	if(detectCollision(square,airport)){
 		clearInterval(timer);
+<<<<<<< HEAD
 		window.location = 'index3.html';	
+=======
+		window.location = 'winner.html';	
+>>>>>>> origin/gh-pages
 	} 
 }
 
@@ -125,3 +129,7 @@ function detectCollision(object1, object2){
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/gh-pages
