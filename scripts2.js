@@ -3,7 +3,7 @@ var ctx;
 var timer;
 
 var squareImage = new Image();
-squareImage.src = "Chic-plane.png";
+squareImage.src = "chic-plane_sm.png";
 
 var square = {
 	img: squareImage,

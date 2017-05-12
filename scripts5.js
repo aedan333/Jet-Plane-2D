@@ -3,7 +3,7 @@ var ctx;
 var timer;
 
 var squareImage = new Image();
-squareImage.src = "chic-plane_sm.png";
+squareImage.src = "ww2-smalljet_sm.png";
 
 var square = {
 	img: squareImage,
@@ -14,7 +14,7 @@ var square = {
 }
 
 var airportImage = new Image();
-airportImage.src = "Basic-Airport.png";
+airportImage.src = "Regular-Airport.png";
 
 var airport = {
 	img: airportImage,
@@ -53,7 +53,7 @@ function init(){
 
 	setInterval(makeAGoose,1100);
 	
-	timer = setInterval(draw, 10);
+	timer = setInterval(draw, 1);
 
   	//console.log(ctx.canvas.height);
 
@@ -63,16 +63,16 @@ window.addEventListener('keydown', function(event){
 
 	switch(event.keyCode){
 		case 38:
-			square.y -= 10;
+			square.y -= 17;
 			break;
 		case 40:
-			square.y += 10;
+			square.y += 17;
 			break;
 		case 37:
-			square.x -= 10;
+			square.x -= 17;
 			break;
 		case 39:
-			square.x += 10;
+			square.x += 17;
 			break;
 	}
 
@@ -89,7 +89,7 @@ function draw(){
 		}
 		if(detectCollision(square,geese[i])){
 			clearInterval(timer);
-			window.location = 'lost.html';	
+			window.location = 'index5.html';	
 		} 
 	}
 
@@ -100,7 +100,7 @@ function draw(){
 	//CHECK IF THE PLANE HAS TOUCHED THE AIRPORT
 	if(detectCollision(square,airport)){
 		clearInterval(timer);
-		window.location = 'levelup.html';	
+		window.location = 'index6.html';	
 	} 
 }
 
