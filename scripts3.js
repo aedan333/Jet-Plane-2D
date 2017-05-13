@@ -27,6 +27,7 @@ var airport = {
 var gooseImage = new Image();
 gooseImage.src = "Goose_sm.png";
 
+
 function goose(){
 	this.img = gooseImage;
 	this.width = 40;
@@ -99,7 +100,7 @@ function draw(){
 	//CHECK IF THE PLANE HAS TOUCHED THE AIRPORT
 	if(detectCollision(square,airport)){
 		clearInterval(timer);
-		window.location = 'index4.html';	
+		window.location = 'levelup.html';	
 	} 
 }
 
@@ -121,7 +122,6 @@ function detectCollision(object1, object2){
 	    return true;
 	}
 };
-
 
 
 

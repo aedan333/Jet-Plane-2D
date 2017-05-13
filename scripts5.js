@@ -3,7 +3,7 @@ var ctx;
 var timer;
 
 var squareImage = new Image();
-squareImage.src = "ww2-smalljet_sm.png";
+squareImage.src = "chic-plane_sm.png";
 
 var square = {
 	img: squareImage,
@@ -14,7 +14,7 @@ var square = {
 }
 
 var airportImage = new Image();
-airportImage.src = "Regular-Airport.png";
+airportImage.src = "Basic-Airport.png";
 
 var airport = {
 	img: airportImage,
@@ -27,7 +27,6 @@ var airport = {
 var gooseImage = new Image();
 gooseImage.src = "Goose_sm.png";
 
-
 function goose(){
 	this.img = gooseImage;
 	this.width = 40;
@@ -38,6 +37,19 @@ function goose(){
 
 var geese = [];
 
+var missileImage = new Image();
+missileImage.src = "missile_sm.png";
+
+function missile(){
+	this.img = missileImage;
+	this.width = 83;
+	this.height = 30;
+	this.x = 1242;
+	this.y = 0;
+};
+
+var missiles = [];
+
 
 function init(){
 	
@@ -47,13 +59,10 @@ function init(){
 	ctx.canvas.width  = window.innerWidth;
   	ctx.canvas.height = window.innerHeight;
 
-	var gooseA = new goose();
-	gooseA.y = randomYPosition();
-	geese.push(gooseA);
-
-	setInterval(makeAGoose,1100);
+	setInterval(makeAGoose,1500);
+	setInterval(makeAMissile,7000);
 	
-	timer = setInterval(draw, 1);
+	timer = setInterval(draw, 10);
 
   	//console.log(ctx.canvas.height);
 
@@ -63,16 +72,16 @@ window.addEventListener('keydown', function(event){
 
 	switch(event.keyCode){
 		case 38:
-			square.y -= 17;
+			square.y -= 10;
 			break;
 		case 40:
-			square.y += 17;
+			square.y += 10;
 			break;
 		case 37:
-			square.x -= 17;
+			square.x -= 10;
 			break;
 		case 39:
-			square.x += 17;
+			square.x += 10;
 			break;
 	}
 
@@ -81,33 +90,43 @@ window.addEventListener('keydown', function(event){
 function draw(){ 
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	
-	for(let i = 0;i < geese.length; i++){
-		geese[i].x -=1;
-		ctx.drawImage(geese[i].img, geese[i].x, geese[i].y, geese[i].width, geese[i].height);
-		if(geese[i].x + geese[i].width < 0){
-			geese.splice(i,1);
-		}
-		if(detectCollision(square,geese[i])){
-			clearInterval(timer);
-			window.location = 'index5.html';	
-		} 
-	}
+	moveEnemies(geese,1);
+	moveEnemies(missiles,5);
 
 	ctx.drawImage(airport.img, airport.x, airport.y, airport.width, airport.height); 
 	ctx.drawImage(square.img, square.x, square.y, square.width, square.height);
-
 	
 	//CHECK IF THE PLANE HAS TOUCHED THE AIRPORT
 	if(detectCollision(square,airport)){
 		clearInterval(timer);
-		window.location = 'index6.html';	
+		window.location = 'index4.html';	
 	} 
+}
+
+function moveEnemies(enemyList,speed){
+	for(let i = 0;i < enemyList.length; i++){
+		enemyList[i].x -=speed;
+		ctx.drawImage(enemyList[i].img, enemyList[i].x, enemyList[i].y, enemyList[i].width, enemyList[i].height);
+		if(enemyList[i].x + enemyList[i].width < 0){
+			enemyList.splice(i,1);
+		}
+		if(detectCollision(square,enemyList[i])){
+			clearInterval(timer);
+			window.location = 'lost.html';	
+		} 
+	}
 }
 
 function makeAGoose(){
 	var newGoose = new goose();
 	newGoose.y = randomYPosition();
 	geese.push(newGoose);
+}
+
+function makeAMissile(){
+	var newMissile = new missile();
+	newMissile.y = randomYPosition();
+	missiles.push(newMissile);
 }
 
 function randomYPosition(){
@@ -122,6 +141,7 @@ function detectCollision(object1, object2){
 	    return true;
 	}
 };
+
 
 
 
