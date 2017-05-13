@@ -50,7 +50,7 @@ function init(){
 	gooseA.y = randomYPosition();
 	geese.push(gooseA);
 
-	setInterval(makeAGoose,3000);
+	setInterval(makeAGoose,1500);
 	
 	timer = setInterval(draw, 10);
 
@@ -99,7 +99,7 @@ function draw(){
 	//CHECK IF THE PLANE HAS TOUCHED THE AIRPORT
 	if(detectCollision(square,airport)){
 		clearInterval(timer);
-		window.location = 'index3.html';	
+		window.location = 'index4.html';	
 	} 
 }
 
@@ -121,4 +121,7 @@ function detectCollision(object1, object2){
 	    return true;
 	}
 };
+
+
+
 

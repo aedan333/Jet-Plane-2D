@@ -1,0 +1,11 @@
+html, body {
+	position: absolute;
+	background: #999;
+	margin: 0;
+}
+
+.col {
+	margin: 5px;
+	float: left;
+	display: inline-block;
+}

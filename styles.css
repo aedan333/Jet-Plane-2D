@@ -37,6 +37,16 @@ ul li {
 	margin: 0px;
 }
 
+.planes:hover {
+	background-color: rgb(0, 255, 199);
+}
+
+.planes {
+	display: inline-block;
+	padding: 50px;
+	margin: 0px;
+}
+
 .btn-text {
 	color: white;
 }
