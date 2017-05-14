@@ -59,8 +59,8 @@ function init(){
 	ctx.canvas.width  = window.innerWidth;
   	ctx.canvas.height = window.innerHeight;
 
-	setInterval(makeAGoose,1500);
-	setInterval(makeAMissile,7000);
+	setInterval(makeAGoose,1100);
+	setInterval(makeAMissile,5000);
 	
 	timer = setInterval(draw, 10);
 
@@ -72,16 +72,16 @@ window.addEventListener('keydown', function(event){
 
 	switch(event.keyCode){
 		case 38:
-			square.y -= 10;
+			square.y -= 14;
 			break;
 		case 40:
-			square.y += 10;
+			square.y += 14;
 			break;
 		case 37:
-			square.x -= 10;
+			square.x -= 14;
 			break;
 		case 39:
-			square.x += 10;
+			square.x += 14;
 			break;
 	}
 
@@ -91,7 +91,7 @@ function draw(){
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	
 	moveEnemies(geese,1);
-	moveEnemies(missiles,5);
+	moveEnemies(missiles,7);
 
 	ctx.drawImage(airport.img, airport.x, airport.y, airport.width, airport.height); 
 	ctx.drawImage(square.img, square.x, square.y, square.width, square.height);
@@ -99,7 +99,7 @@ function draw(){
 	//CHECK IF THE PLANE HAS TOUCHED THE AIRPORT
 	if(detectCollision(square,airport)){
 		clearInterval(timer);
-		window.location = 'index6.html';	
+		window.location = 'index7.html';	
 	} 
 }
 
@@ -112,7 +112,7 @@ function moveEnemies(enemyList,speed){
 		}
 		if(detectCollision(square,enemyList[i])){
 			clearInterval(timer);
-			window.location = 'index5.html';	
+			window.location = 'index6.html';	
 		} 
 	}
 }
