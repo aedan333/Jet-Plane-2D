@@ -3,7 +3,7 @@ var ctx;
 var timer;
 
 var squareImage = new Image();
-squareImage.src = "ww2-smalljet_sm.png";
+squareImage.src = "chic-plane_sm.png";
 
 var square = {
 	img: squareImage,
@@ -14,7 +14,7 @@ var square = {
 }
 
 var airportImage = new Image();
-airportImage.src = "Regular-Airport.png";
+airportImage.src = "Basic-Airport.png";
 
 var airport = {
 	img: airportImage,
@@ -99,7 +99,7 @@ function draw(){
 	//CHECK IF THE PLANE HAS TOUCHED THE AIRPORT
 	if(detectCollision(square,airport)){
 		clearInterval(timer);
-		window.location = 'index6.html';	
+		window.location = 'index4.html';	
 	} 
 }
 
@@ -112,7 +112,11 @@ function moveEnemies(enemyList,speed){
 		}
 		if(detectCollision(square,enemyList[i])){
 			clearInterval(timer);
+<<<<<<< HEAD
 			window.location = 'index5.html';	
+=======
+			window.location = 'lost.html';	
+>>>>>>> origin/gh-pages
 		} 
 	}
 }
@@ -141,6 +145,7 @@ function detectCollision(object1, object2){
 	    return true;
 	}
 };
+
 
 
 
