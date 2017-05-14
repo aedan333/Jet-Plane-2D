@@ -100,7 +100,7 @@ function draw(){
 	//CHECK IF THE PLANE HAS TOUCHED THE AIRPORT
 	if(detectCollision(square,airport)){
 		clearInterval(timer);
-		window.location = 'levelup.html';	
+		window.location = 'index4.html';	
 	} 
 }
 
