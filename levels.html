@@ -5,12 +5,24 @@
 <html lang="en-CA" manifest="airplane.appcache">
 	<head>
 	<meta name="google-site-verification" content="GVXLFkkIX-ZbkLJOAK4cCx6PTD7b9k9aUOUWaTrKFn8" />
-		<title>Level 2</title>
 
-		<link rel="stylesheet" type="text/css" href="styles3.css">
+		
+		<title>Level Select</title>
+
+		<link rel="stylesheet" type="text/css" href="loginstyles.css">
+		<style>
+
+		html, body {
+			margin: 0px;
+			background: lime;
+		}
+
+		</style>
+
 
 		<meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=8; IE=9; IE=edge">
+
 
 		<!--favicons-->
 		<link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
@@ -26,19 +38,26 @@
 		<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 		<link rel="apple-touch-startup-image" href="loading.png" />
 
-		
-
-		<link rel="stylesheet" type="text/css" href="styles2.css">
 
 	</head>
 
-	<body onload="init();">
+	<body>
 
-		<canvas id="canvas">
+	<div class="login-form">
+			<div class="login-content">
+				<h1>1 - 7</h1>
+				<input type="text" class="js--username" placeholder="username" />
+				<input type="password" placeholder="password" class="js--password"/>
+				<button class="js--login">Log In</button>
+			</div>
+			<div class="js--login-error login-error">
+				Username or password incorrect. Try again!
+			</div>
+		</div>
 
-		</canvas>
+		
 
 		<script type="text/javascript" src="jquery-3.1.1.min.js"></script>     
-        <script type="text/javascript" src="scripts3.js"></script>
+        <script type="text/javascript" src="levels.js"></script>
 	</body>
 </html>

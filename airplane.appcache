@@ -7,15 +7,24 @@ index3.html
 index4.html
 index5.html
 index6.html
+index7.html
+index8.html
 winner.html
 lost.html
 levelup.html
+bonus.html
+levels.html
+1and7.html
 styles.css
 styles2.css
 styles3.css
 styles4.css
 styles5.css
 styles6.css
+styles7.css
+styles8.css
+loginstyles.css
+planes.css
 jquery-3.1.1.min.js
 scripts.js
 scripts2.js
@@ -23,6 +32,9 @@ scripts3.js
 scripts4.js
 scripts5.js
 scripts6.js
+scripts7.js
+scripts8.js
+levels.js
 loading.png
 
 

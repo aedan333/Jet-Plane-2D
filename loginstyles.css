@@ -1,0 +1,64 @@
+body{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	font-size: 18px;
+}
+
+*{
+	box-sizing: border-box;
+}
+
+h1{
+	margin: 0;
+	padding: 0;
+	margin-bottom: 20px;
+}
+
+.login-form{
+	position: absolute;
+	top: 0%;
+	left: 50%;
+	bottom: 100%;
+	width: 100%;
+	max-width: 400px;
+	transform: translate(-50%,-50%);
+	border: 1px solid grey;
+	
+}
+
+	.login-content{
+		margin: 40px;
+	}
+
+	input{
+		padding: 10px;
+		display: block;
+		width: 100%;
+		margin-bottom: 10px;
+		font-size: 18px;
+	}
+
+	button{
+		background-color: blue;
+		color: white;
+		border: none;
+		padding: 10px;
+		font-size: 18px;
+		cursor: pointer;
+	}
+
+
+.login-error{
+	background-color: red;
+	color: white;
+	padding: 20px 40px;
+	display: none;
+}
+
+	.login-error.s-visible{
+		display: block;
+	}
