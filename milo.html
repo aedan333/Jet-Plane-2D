@@ -5,18 +5,8 @@
 <html lang="en-CA" manifest="airplane.appcache">
 	<head>
 	<meta name="google-site-verification" content="GVXLFkkIX-ZbkLJOAK4cCx6PTD7b9k9aUOUWaTrKFn8" />
-
-		
 		<title>Level 1</title>
-
-		<style>
-			
-		html, body {
-			margin: 0px;
-			background: lime;
-		}
-
-		</style>
+		<link rel="stylesheet" type="text/css" href="milo.css">
 
 		<meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=8; IE=9; IE=edge">
@@ -34,25 +24,18 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 		<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 		<link rel="apple-touch-startup-image" href="loading.png" />
+
+		
 	</head>
 
-	<body>
+	<body onload="init();">
+	
 
+		<canvas id="canvas">
 
+		</canvas>
 
-		 <br><a href="levels.html"><img src="door.png" width="40px" height="40px" alt="door">Return</a></br>
-		 <br><a href="index9.html">Continue To Level 8</a></br>
-		 <br></br>
-		 <br></br>
-		 <br></br>
-		 <br></br>
-		 <br><a href="index2.html">Level 1</a></br>
-		 <br><a href="index3.html">Level 2</a></br>
-		 <br><a href="index4.html">Level 3</a></br>
-		 <br><a href="index5.html">Level 4</a></br>
-		 <br><a href="index6.html">Level 5</a></br>
-		 <br><a href="index7.html">Level 6</a></br>
-		 <br><a href="index8.html">Level 7</a></br>
-
+		<script type="text/javascript" src="jquery-3.1.1.min.js"></script>     
+        <script type="text/javascript" src="milo.js"></script>
 	</body>
 </html>

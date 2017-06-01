@@ -24,6 +24,57 @@ var airport = {
 	y: 538
 };
 
+var catImage = new Image();
+catImage.src = "x-border.png";
+
+var cat = {
+	img: catImage,
+	width: 6,
+	height: 3000,
+	x: 1366,
+	y: 0
+};
+
+var cat2Image = new Image();
+cat2Image.src = "x-border2.png";
+
+var cat2 = {
+	img: cat2Image,
+	width: 6,
+	height: 3000,
+	x: -6,
+	y: 0
+};
+
+var catsImage = new Image();
+catsImage.src = "y-border.png";
+
+var cats = {
+	img: catsImage,
+	width: 3000,
+	height: 6,
+	x: 0,
+	y: 660
+};
+
+
+var cats2Image = new Image();
+cats2Image.src = "y-border2.png";
+
+var cats2 = {
+	img: catsImage,
+	width: 3000,
+	height: 6,
+	x: 0,
+	y: -6
+};
+
+
+
+
+
+
+
 var gooseImage = new Image();
 gooseImage.src = "Goose_sm.png";
 
@@ -94,6 +145,12 @@ function draw(){
 	}
 
 	ctx.drawImage(airport.img, airport.x, airport.y, airport.width, airport.height); 
+	ctx.drawImage(airport.img, airport.x, airport.y, airport.width, airport.height); 
+	ctx.drawImage(cat.img, cat.x, cat.y, cat.width, cat.height);
+	ctx.drawImage(cat2.img, cat2.x, cat2.y, cat2.width, cat2.height);
+	ctx.drawImage(cats.img, cats.x, cats.y, cats.width, cats.height);
+	ctx.drawImage(cats2.img, cats2.x, cats2.y, cats2.width, cats2.height);
+	ctx.drawImage(square.img, square.x, square.y, square.width, square.height);
 	ctx.drawImage(square.img, square.x, square.y, square.width, square.height);
 
 	
@@ -101,6 +158,28 @@ function draw(){
 	if(detectCollision(square,airport)){
 		clearInterval(timer);
 		window.location = 'levelup.html';	
+	} 
+
+	//CHECK IF THE PLANE HAS TOUCHED THE BORDERS
+
+	if(detectCollision(square,cat)){
+		clearInterval(timer);
+		window.location = 'index4.html';	
+	} 
+
+	if(detectCollision(square,cat2)){
+		clearInterval(timer);
+		window.location = 'index4.html';	
+	} 
+
+	if(detectCollision(square,cats)){
+		clearInterval(timer);
+		window.location = 'index4.html';	
+	} 
+
+	if(detectCollision(square,cats2)){
+		clearInterval(timer);
+		window.location = 'index4.html';	
 	} 
 }
 

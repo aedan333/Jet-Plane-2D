@@ -1,5 +1,6 @@
 {
 	"name": "Blocky Airplane Tree",
+	"display" : "standalone",
 	"icons": [
 		{
 			"src": "\/android-chrome-192x192.png",
@@ -13,5 +14,9 @@
 		}
 	],
 	"theme_color": "#ffffff",
-	"display": "standalone"
+	"display": "standalone",
+	"rules": {
+    ".read": "auth != null",
+    ".write": "auth != null"
+  }
 }

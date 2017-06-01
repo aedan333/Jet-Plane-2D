@@ -9,30 +9,6 @@ header {
 	padding: 2px 15px 0 15px;
 }
 
-header h1 {
-	margin: 0;
-	display: inline;
-
-}
-
-nav ul {
-	margin: 0;
-	display: inline;
-}
-
-nav ul li {
-	background: black;
-	color: white;
-	display: inline-block;
-	list-style-type: none;
-	padding: 5px 15px;
-	margin: 0;
-}
-
-nav ul li a {
-	color: white;
-}
-
 h2:hover {	
 	background-color: rgb(0, 255, 199);
 }
@@ -41,41 +17,25 @@ ul li {
 	list-style-type: none;
 }
 
-.start:hover {
+nav ul li a {
+	color: white;
+}
+
+.mission_1:hover {
 	background-color: rgb(0, 255, 199);
 }
 
-.start {
+.mission_1 {
 	display: inline-block;
 	padding: 50px;
 	margin: 0px;
 }
 
-.help:hover {
+.mission_2:hover {
 	background-color: rgb(0, 255, 199);
 }
 
-.help {
-	display: inline-block;
-	padding: 50px;
-	margin: 0px;
-}
-
-.planes:hover {
-	background-color: rgb(0, 255, 199);
-}
-
-.planes {
-	display: inline-block;
-	padding: 50px;
-	margin: 0px;
-}
-
-.levels:hover {
-	background-color: rgb(0, 255, 199);
-}
-
-.levels {
+.mission_2 {
 	display: inline-block;
 	padding: 50px;
 	margin: 0px;
