@@ -155,8 +155,8 @@ function draw(){
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	
 	moveEnemies(geese,3);
-	moveEnemies(missiles,10);
-	moveEnemies(badplanes,8);
+	moveEnemies(missiles,9);
+	moveEnemies(badplanes,7);
 
 	ctx.drawImage(airport.img, airport.x, airport.y, airport.width, airport.height); 
 	ctx.drawImage(cat.img, cat.x, cat.y, cat.width, cat.height);
@@ -168,7 +168,7 @@ function draw(){
 	//CHECK IF THE PLANE HAS TOUCHED THE AIRPORT
 	if(detectCollision(square,airport)){
 		clearInterval(timer);
-		window.location = 'milo3.html';	
+		window.location = 'winner.html';	
 	} 
 
 
@@ -176,22 +176,22 @@ function draw(){
 
 	if(detectCollision(square,cat)){
 		clearInterval(timer);
-		window.location = 'milo2.html';	
+		window.location = 'milo3.html';	
 	} 
 
 	if(detectCollision(square,cat2)){
 		clearInterval(timer);
-		window.location = 'milo2.html';	
+		window.location = 'milo3.html';	
 	} 
 
 	if(detectCollision(square,cats)){
 		clearInterval(timer);
-		window.location = 'milo2.html';	
+		window.location = 'milo3.html';	
 	} 
 
 	if(detectCollision(square,cats2)){
 		clearInterval(timer);
-		window.location = 'milo2.html';	
+		window.location = 'milo3.html';	
 	} 
 
 
@@ -209,7 +209,7 @@ function moveEnemies(enemyList,speed){
 		}
 		if(detectCollision(square,enemyList[i])){
 			clearInterval(timer);
-			window.location = 'milo2.html';	
+			window.location = 'milo3.html';	
 		} 
 	}
 }

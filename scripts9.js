@@ -153,7 +153,7 @@ function draw(){
 	//CHECK IF THE PLANE HAS TOUCHED THE AIRPORT
 	if(detectCollision(square,airport)){
 		clearInterval(timer);
-		window.location = 'index10.html';	
+		window.location = 'winner.html';	
 	} 
 
 
