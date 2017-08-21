@@ -68,10 +68,12 @@ var yBorderTop = {
 	y: -6
 };
 
+var enemyList = [];
+
 var gooseImage = new Image();
 gooseImage.src = "graphics/Goose_sm.png";
 
-function goose(){
+function goose(speed){
 	this.img = gooseImage;
 	this.width = 40;
 	this.height = 29;
@@ -80,13 +82,11 @@ function goose(){
 	this.speed = 1;
 };
 
-var geese = [];
-
 
 var stormImage = new Image();
 stormImage.src = "graphics/Storm.png";
 
-function storm(){
+function storm(speed){
 	this.img = stormImage;
 	this.width = 153;
 	this.height = 108;
@@ -98,13 +98,11 @@ function storm(){
 
 };
 
-var storms = [];
-
 
 var missileImage = new Image();
 missileImage.src = "graphics/missile_sm.png";
 
-function missile(){
+function missile(speed){
 	this.img = missileImage;
 	this.width = 83;
 	this.height = 30;
@@ -113,8 +111,6 @@ function missile(){
 	this.isMissile = true;
 	this.speed = 5;
 };
-
-var missiles = [];
 
 
 function init(level){
@@ -127,25 +123,69 @@ function init(level){
 
 	var gooseA = new goose();
 	gooseA.y = randomYPosition();
-	geese.push(gooseA);
+	enemyList.push(gooseA);
 
 
 	nextLevel = level + 1;
 	currentLevel = level;
 
 	let gooseTimerLength = 10000;
+	let sendGeese = true;
+	let gooseSpeed = 1;
+	
 	let stormTimerLength = 3000;
+	let sendStorms = true;
+	let stormSpeed = 1;
+	
+	let missileTimerLength = 7000;
+	let sendMissiles = false;
+	let missileSpeed = 5;
 
 	if(level === 2) gooseTimerLength = 5000;
 	if(level === 3) gooseTimerLength = 2000;
 	if(level === 4){
 		planeImage.src = "graphics/ww2-smalljet_sm.png";
-		setInterval(makeAMissile,7000);
+		gooseTimerLength = 1500;
+		sendMissiles = true;
+	}
+	if(level === 5){
+		planeImage.src = "graphics/ww2-smalljet_sm.png";
+		gooseTimerLength = 1100;
+		gooseSpeed = 2;
+		sendMissiles = true;
+		missileTimerLength = 5000;
+	}
+	if(level === 6){
+		planeImage.src = "graphics/ww2-smalljet_sm.png";
+		gooseTimerLength = 900;
+		gooseSpeed = 2;
+		sendMissiles = true;
+		missileTimerLength = 4200;
+		missileSpeed = 7;
+	}
+	if(level === 7){
+		planeImage.src = "graphics/ww2-smalljet_sm.png";
+		airportImage.src = "graphics/Regular-Airport.png";
+		gooseTimerLength = 900;
+		gooseSpeed = 3;
+		sendMissiles = true;
+		missileTimerLength = 3800;
+		missileSpeed = 9;
 	}
 
-	setInterval(makeAGoose,gooseTimerLength);
+	if(level === 8){
+		planeImage.src = "graphics/ww2-smalljet_sm.png";
+		airportImage.src = "graphics/Regular-Airport.png";
+		gooseTimerLength = 900;
+		gooseSpeed = 3;
+		sendMissiles = true;
+		missileTimerLength = 3800;
+		missileSpeed = 9;
+	}
 
-	setInterval(makeAStorm,stormTimerLength);
+	if(sendGeese) setInterval(makeAGoose(gooseSpeed),gooseTimerLength);
+	if(sendMissiles) setInterval(makeAMissile(missileSpeed),missileTimerLength);
+	if(sendStorms) setInterval(makeAStorm(stormSpeed),stormTimerLength);
 	
 	timer = setInterval(draw, 10);
 	setInterval(domRedraw,500);
@@ -212,34 +252,32 @@ function draw(){
 		if(passengers.happiness > passengers.maxHappiness) passengers.happiness = passengers.maxHappiness;
 	}
 	
-	for(let i = 0;i < geese.length; i++){
-		geese[i].x -=geese[i].speed;
-		ctx.drawImage(geese[i].img, geese[i].x, geese[i].y, geese[i].width, geese[i].height);
-		if(geese[i].x + geese[i].width < 0){
-			geese.splice(i,1);
+	for(let i = 0;i < enemyList.length; i++){
+		enemyList[i].x -=enemyList[i].speed;
+		ctx.drawImage(enemyList[i].img, enemyList[i].x, enemyList[i].y, enemyList[i].width, enemyList[i].height);
+		if(enemyList[i].x + enemyList[i].width < 0){
+			enemyList.splice(i,1);
 		}
-		if(!geese[i].hasCollided && detectCollision(airplane,geese[i])){
-			geese[i].hasCollided = true;
-			if(geese[i].isMissile){
-				clearInterval(timer);
-				window.location = 'lost.html';
+		if(!enemyList[i].hasCollided && detectCollision(airplane,enemyList[i])){
+			enemyList[i].hasCollided = true;
+			if(enemyList[i].isMissile){
+				youlose();
 			}
-			else if(geese[i].isStorm){
-				airplaneDamage += Math.floor(30 * geese[i].strength);
+			else if(enemyList[i].isStorm){
+				airplaneDamage += Math.floor(30 * enemyList[i].strength);
 				passengers.happiness -= 200;
 
-				if(geese[i].strength > 0.5) passengers.casualties += 1;
+				if(enemyList[i].strength > 0.5) passengers.casualties += 1;
 				airplane.y+= 60
 
 			} else{
-				geese.splice(i,1);
+				enemyList.splice(i,1);
 				airplaneDamage +=50;
 				passengers.happiness -= 200;
 			}
 
 			if(airplaneDamage >= maxCollisions){
-				clearInterval(timer);
-				window.location = 'lost.html';
+				youlose();
 			}
 		} 
 	}
@@ -255,7 +293,8 @@ function draw(){
 	//CHECK IF THE PLANE HAS TOUCHED THE AIRPORT
 	if(detectCollision(airplane,airport)){
 		clearInterval(timer);
-		window.location = 'level'+ nextLevel +'.html';	
+		if(nextLevel === 9) window.location = 'winner.html';
+		else window.location = 'level'+ nextLevel +'.html';	
 	}
 
 	//CHECK IF THE PLANE HAS TOUCHED THE BORDERS
@@ -278,25 +317,28 @@ function restartLevel(){
 	window.location = 'level'+ currentLevel +'.html';
 }
 
-function makeAGoose(){
+function makeAGoose(speed){
 	var newGoose = new goose();
 	newGoose.y = randomYPosition();
-	geese.push(newGoose);
+	newGoose.speed = speed;
+	enemyList.push(newGoose);
 }
 
-function makeAStorm(){
+function makeAStorm(speed){
 	var newStorm = new storm();
 	newStorm.y = randomYPosition();
 	newStorm.strength = Math.random();
 	newStorm.width *= newStorm.strength;
 	newStorm.height *= newStorm.strength;
-	geese.push(newStorm);
+	newStorm.speed = speed;
+	enemyList.push(newStorm);
 }
 
-function makeAMissile(){
+function makeAMissile(speed){
 	var newMissile = new missile();
 	newMissile.y = randomYPosition();
-	geese.push(newMissile);
+	newMissile.speed = speed;
+	enemyList.push(newMissile);
 }
 
 function randomYPosition(){
@@ -312,3 +354,7 @@ function detectCollision(object1, object2){
 	}
 };
 
+function youlose(){
+	clearInterval(timer);
+	window.location = 'lost.html';
+}
