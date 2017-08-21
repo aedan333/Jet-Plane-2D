@@ -1,3 +1,4 @@
+
 body, html {
 	margin: 0px;
 	background: lime;
@@ -9,40 +10,62 @@ header {
 	padding: 2px 15px 0 15px;
 }
 
-h2:hover {	
-	background-color: rgb(0, 255, 199);
+header h1 {
+	margin: 0;
+	display: inline;
+
 }
 
 ul li {
 	list-style-type: none;
 }
 
-nav ul li a {
-	color: white;
-}
-
-.mission_1:hover {
+.start:hover {
 	background-color: rgb(0, 255, 199);
 }
 
-.mission_1 {
+.start {
 	display: inline-block;
-	padding: 50px;
+	padding: 30px;
 	margin: 0px;
 }
 
-.mission_2:hover {
+.help:hover {
 	background-color: rgb(0, 255, 199);
 }
 
-.mission_2 {
+.help {
 	display: inline-block;
-	padding: 50px;
+	padding: 30px;
+	margin: 0px;
+}
+
+.planes:hover {
+	background-color: rgb(0, 255, 199);
+}
+
+.planes {
+	display: inline-block;
+	padding: 30px;
+	margin: 0px;
+}
+
+.levels:hover {
+	background-color: rgb(0, 255, 199);
+}
+
+.levels {
+	display: inline-block;
+	padding: 30px;
 	margin: 0px;
 }
 
 .btn-text {
 	color: white;
+	display: inline-block;
+	list-style-type: none;
+	padding: 5px 15px;
+	margin: 0;
 }
 
 #title {
@@ -50,6 +73,12 @@ nav ul li a {
 	padding: 1px;
 	margin: 0px;
 	color: white;
+}
+
+#departures {
+	position: absolute;
+	left: 18%;
+	right: 50%;
 }
 
 footer {

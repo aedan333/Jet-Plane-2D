@@ -1,5 +1,7 @@
 $(function(){
 	
+
+	//THE LOGIN PAGE
 	var username = "I764CYJX732";
 	var password = "Jip";
 

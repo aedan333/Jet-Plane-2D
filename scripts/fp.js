@@ -3,12 +3,12 @@ var ctx;
 var timer;
 
 var squareImage = new Image();
-squareImage.src = "f-14.png";
+squareImage.src = "t-49.png";
 
 var square = {
 	img: squareImage,
-	width: 100,
-	height: 100,
+	width: 95,
+	height: 95,
 	x: 0,
 	y: 0,
 }
@@ -100,19 +100,6 @@ function missile(){
 
 var missiles = [];
 
-var badplaneImage = new Image();
-badplaneImage.src = "collision-plane2_sm.png";
-
-function badplane(){
-	this.img = badplaneImage;
-	this.width = 383;
-	this.height = 330;
-	this.x = 1242;
-	this.y = 0;
-};
-
-var badplanes = [];
-
 
 function init(){
 	
@@ -122,9 +109,8 @@ function init(){
 	ctx.canvas.width  = window.innerWidth;
   	ctx.canvas.height = window.innerHeight;
 
-	setInterval(makeAGoose,800);
+	setInterval(makeAGoose,900);
 	setInterval(makeAMissile,2800);
-	setInterval(makeABadplane,6800);
 	
 	timer = setInterval(draw, 10);
 
@@ -136,16 +122,16 @@ window.addEventListener('keydown', function(event){
 
 	switch(event.keyCode){
 		case 38:
-			square.y -= 20;
+			square.y -= 7;
 			break;
 		case 40:
-			square.y += 20;
+			square.y += 14;
 			break;
 		case 37:
-			square.x -= 20;
+			square.x -= 14;
 			break;
 		case 39:
-			square.x += 20;
+			square.x += 6;
 			break;
 	}
 
@@ -156,7 +142,6 @@ function draw(){
 	
 	moveEnemies(geese,3);
 	moveEnemies(missiles,10);
-	moveEnemies(badplanes,8);
 
 	ctx.drawImage(airport.img, airport.x, airport.y, airport.width, airport.height); 
 	ctx.drawImage(cat.img, cat.x, cat.y, cat.width, cat.height);
@@ -168,7 +153,7 @@ function draw(){
 	//CHECK IF THE PLANE HAS TOUCHED THE AIRPORT
 	if(detectCollision(square,airport)){
 		clearInterval(timer);
-		window.location = 'milo3.html';	
+		window.location = 'fp2.html';	
 	} 
 
 
@@ -176,22 +161,22 @@ function draw(){
 
 	if(detectCollision(square,cat)){
 		clearInterval(timer);
-		window.location = 'milo2.html';	
+		window.location = 'fp.html';	
 	} 
 
 	if(detectCollision(square,cat2)){
 		clearInterval(timer);
-		window.location = 'milo2.html';	
+		window.location = 'fp.html';	
 	} 
 
 	if(detectCollision(square,cats)){
 		clearInterval(timer);
-		window.location = 'milo2.html';	
+		window.location = 'fp.html';	
 	} 
 
 	if(detectCollision(square,cats2)){
 		clearInterval(timer);
-		window.location = 'milo2.html';	
+		window.location = 'fp.html';	
 	} 
 
 
@@ -209,7 +194,7 @@ function moveEnemies(enemyList,speed){
 		}
 		if(detectCollision(square,enemyList[i])){
 			clearInterval(timer);
-			window.location = 'milo2.html';	
+			window.location = 'fp.html';	
 		} 
 	}
 }
@@ -225,12 +210,6 @@ function makeAMissile(){
 	var newMissile = new missile();
 	newMissile.y = randomYPosition();
 	missiles.push(newMissile);
-}
-
-function makeABadplane(){
-	var newBadplane = new badplane();
-	newBadplane.y = randomYPosition();
-	badplanes.push(newBadplane);
 }
 
 function randomYPosition(){

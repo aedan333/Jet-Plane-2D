@@ -176,22 +176,22 @@ function draw(){
 
 	if(detectCollision(square,cat)){
 		clearInterval(timer);
-		window.location = 'milo3.html';	
+		window.location = 'fp3.html';	
 	} 
 
 	if(detectCollision(square,cat2)){
 		clearInterval(timer);
-		window.location = 'milo3.html';	
+		window.location = 'fp3.html';	
 	} 
 
 	if(detectCollision(square,cats)){
 		clearInterval(timer);
-		window.location = 'milo3.html';	
+		window.location = 'fp3.html';	
 	} 
 
 	if(detectCollision(square,cats2)){
 		clearInterval(timer);
-		window.location = 'milo3.html';	
+		window.location = 'fp3.html';	
 	} 
 
 
@@ -209,7 +209,7 @@ function moveEnemies(enemyList,speed){
 		}
 		if(detectCollision(square,enemyList[i])){
 			clearInterval(timer);
-			window.location = 'milo3.html';	
+			window.location = 'fp3.html';	
 		} 
 	}
 }
