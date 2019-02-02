@@ -1,0 +1,53 @@
+body, html {
+	margin: 0px;
+	background: #c9f1ff;
+}
+
+header {
+	background: #333;
+	color: white;
+	margin: 0px;
+	padding: 2px 15px 0 15px;
+}
+
+
+#title {
+	display: inline-block;
+	padding: 1px;
+	margin: 0px;
+	color: white;
+}
+
+ul li {
+	list-style-type: none;
+}
+
+nav ul li a {
+	color: white;
+}
+
+.menu-item div{
+	display: inline-block;
+	padding: 30px;
+	margin: 0px;
+	text-decoration: none;
+	color: white;
+}
+
+.menu-item:visited, .menu-item:focus, .menu-item:active{
+	color: white;
+	text-decoration: none;
+}
+
+
+footer {
+	position: absolute;
+	top: 370%;
+	left: 50%;
+	right: 50%;
+	bottom: 0%;
+	width: 100%;
+	max-width: 350px;
+	transform: translate(-50%,-50%);
+	color: #bfbfbf;
+}

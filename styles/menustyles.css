@@ -1,7 +1,6 @@
-
 body, html {
 	margin: 0px;
-	background: #c9f1ff;
+	background: #284a7f;
 }
 
 .col {
@@ -67,7 +66,7 @@ body, html {
 
 
 header {
-	background: #333;
+	background: #111;
 	color: white;
 	margin: 0px;
 	padding: 2px 15px 0 15px;
@@ -83,7 +82,7 @@ footer {
 	width: 100%;
 	max-width: 350px;
 	transform: translate(-50%,-50%);
-	color: #777;
+	color: #bfbfbf;
 }
 
 
@@ -93,6 +92,19 @@ ul li {
 
 nav ul li a {
 	color: white;
+}
+
+.menu-item2 div{
+	display: inline-block;
+	padding: 30px;
+	margin: 0px;
+	text-decoration: none;
+	color: white;
+}
+
+.menu-item2:visited, .menu-item2:focus, .menu-item2:active{
+	color: white;
+	text-decoration: none;
 }
 
 .menu-item div{
@@ -109,13 +121,16 @@ nav ul li a {
 }
 
 .menu-item div:hover{
-	background-color: rgb(0, 255, 199);
+	background-color: rgb(0, 0, 128);
+	 transition: 1.0s;
 }
 
 #departures {
 	position: absolute;
-	left: 18%;
-	right: 50%;
+	top: -13%;
+	left: 40%;
+	right: 45%;
+	width: 300px;
 }
 
 
@@ -188,3 +203,16 @@ nav ul li a {
 	.login-error.s-visible{
 		display: block;
 	}
+
+	@media screen and (max-width: 960px) {
+	#title,
+	.menu-item,	
+	.main-menu	{
+		float: none;
+		width: auto;
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+}
+

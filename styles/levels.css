@@ -8,9 +8,12 @@ canvas{
 	position: absolute;
 	top: 0;
 	left: 0;
-	
-	background-color: #00ffff;
+	width: 100vw;
+	height: 100vh;
+	background-color: #75aaff;
 	margin:0;
+	min-width: 100px;
+	min-height: 100px;
 }
 
 .boss {
@@ -70,3 +73,18 @@ canvas{
 	color: white;
 }
 
+@media screen and (max-width: 960px) {
+	.casualtiesMeter,
+	.damageMeter,
+	.happinessMeter--readout,
+	.happinessMeter--bar,
+	.happinessMeter,
+	.meters,
+	#canvas 	{
+		float: none;
+		width: auto;
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+}
