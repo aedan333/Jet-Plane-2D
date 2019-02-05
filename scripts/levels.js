@@ -58,7 +58,7 @@ var yBorderBottom = {
 	width: 3000,
 	height: 6,
 	x: 0,
-	y: 660
+	y: 700
 };
 
 var yBorderTop = {
