@@ -1,0 +1,22 @@
+body, html {
+	margin: 0px;
+	background: #284a7f;
+}
+
+#flight_coin {
+	position: absolute;
+	left: 3%;
+	right: 97%;
+	margin: 10px;
+}
+
+.collect {
+	position: absolute;
+	bottom: 80%;
+	left: 2%;
+	right: 98%;
+	margin: 10px;
+	padding: 5px;
+	color: white;
+	background-color: #111;
+}

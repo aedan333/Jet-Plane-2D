@@ -29,9 +29,9 @@ function getCookie(cname) {
 }
 
 function checkCookie() {
-  var user=getCookie("username");
+  var user = getCookie("username");
   if (user != "") {
-    alert("You are in!" + user);
+    alert("You are in! " + user);
   } else {
      user = prompt("Please enter a username:","");
      if (user != "" && user != null) {
