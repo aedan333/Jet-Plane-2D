@@ -25,29 +25,6 @@
 		<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 		<link rel="apple-touch-startup-image" href="loading.png" />
 
-		<script>
-
-function setCookie(cname,cvalue,exdays) {
-  var d = new Date();
-  d.setTime(d.getTime() + (exdays*24*60*60*1000));
-  var expires = "expires=" + d.toGMTString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
-
-function checkCookie() {
-  var user=getCookie("username");
-  if (user != "") {
-    alert("You are in!" + user);
-  } else {
-     user = prompt("Please enter a username:","");
-     if (user != "" && user != null) {
-       setCookie("username", user, 30);
-     }
-  }
-}
-
-</script>
-
 		
 	</head>
 
