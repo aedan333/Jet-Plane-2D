@@ -16,7 +16,7 @@ let timeOfDay = params.get("time");
 let airportName = params.get("airport");
 
 var planeImage = new Image();
-planeImage.src = "graphics/"+ planeName +".png";
+planeImage.src = "./graphics/"+ planeName +".png";
 
 var timesOfDay = {
 	"0800":{
@@ -111,7 +111,7 @@ var passengers = {
 }
 
 var airportImage = new Image();
-airportImage.src = "graphics/"+ airportName +".png";
+airportImage.src = "./graphics/"+ airportName +".png";
 
 var airport = {
 	img: airportImage,
