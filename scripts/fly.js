@@ -3,13 +3,103 @@ var ctx;
 var timer;
 var gooseTimer;
 var stormTimer;
-var missileTimer;
+var domTimer;
 var flyingKeys = false;
 var airplaneDamage = 0;
 var maxCollisions = 100;
-var currentLevel = 1;
-var nextLevel = 2;
-var maxCasualties = 4;
+var maxCasualties = 2;
+var currentSpeed = 0
+
+let params = new URLSearchParams(document.location.search.substring(1));
+let planeName = params.get("plane");
+let timeOfDay = params.get("time");
+let airportName = params.get("airport");
+
+var planeImage = new Image();
+planeImage.src = "./graphics/"+ planeName +".png";
+
+var timesOfDay = {
+	"0800":{
+		skyColour: "#d4a7ef"
+	},
+	"1200":{
+		skyColour: "#b5d0ff"
+	},
+	"1700":{
+		skyColour: "#ffbb68"
+	},
+	"2400":{
+		skyColour: "#000611"
+	}
+}
+
+var planes={
+	"172": {
+		width: 90,
+		height: 40,
+		maxCasualties: 4,
+		maxSpeed: 160
+	},
+	"747": {
+		width: 300,
+		height: 75,
+		maxCasualties: 410,
+		maxSpeed: 495
+	},
+	"A318": {
+		width: 200,
+		height: 80,
+		maxCasualties: 110,
+		maxSpeed: 470
+	},
+	"p51": {
+		width: 100,
+		height: 40,
+		maxCasualties: 1,
+		maxSpeed: 380
+	},
+	"f22": {
+		width: 200,
+		height: 50,
+		maxCasualties: 1,
+		maxSpeed: 1300
+	},
+	"c130": {
+		width: 200,
+		height: 80,
+		maxCasualties: 97,
+		maxSpeed: 320
+	}
+}
+
+var airports={
+	"intlairport": {
+		width: 512,
+		height: 133,
+	},
+	"smallairport": {
+		width: 479,
+		height: 100,
+	},
+	"aareairport": {
+		width: 479,
+		height: 100,
+	},
+	"stmaarten": {
+		width: 600,
+		height: 100,
+	}
+}
+
+var maxSpeed = planes[planeName].maxSpeed;
+
+var airplane = {
+	img: planeImage,
+	width: planes[planeName].width,
+	height: planes[planeName].height,
+	x: 0,
+	y: 0,
+}
 
 var passengers = {
 	
@@ -17,60 +107,21 @@ var passengers = {
 	maxHappiness: 2000,
 	
 	casualties: 0,
-	maxCasualties: 4,
-}
-
-var planeImage = new Image();
-planeImage.src = "graphics/172-2.png";
-
-var airplane = {
-	img: planeImage,
-	width: 90,
-	height: 40,
-	x: 0,
-	y: 0,
+	maxCasualties: planes[planeName].maxCasualties,
 }
 
 var airportImage = new Image();
-airportImage.src = "graphics/Banana_fields_airport.png";
+airportImage.src = "./graphics/"+ airportName +".png";
 
 var airport = {
 	img: airportImage,
-	width: 324,
-	height: 100,
-	x: 1085,
-	y: 675
-};
-
-var xBorderImage = new Image();
-xBorderImage.src = "graphics/x-border.png";
-
-var xborder1 = {
-	img: xBorderImage,
-	width: 6,
-	height: 3000,
-	x: 1366,
-	y: 0
-};
-
-var yBorderImage = new Image();
-yBorderImage.src = "graphics/y-border.png";
-
-var yBorderBottom = {
-	img: yBorderImage,
-	width: 3000,
-	height: 6,
+	width: airports[airportName].width,
+	height: airports[airportName].height,
 	x: 0,
-	y: 700
+	y: window.innerHeight
 };
 
-var yBorderTop = {
-	img: yBorderImage,
-	width: 3000,
-	height: 6,
-	x: 0,
-	y: -6
-};
+
 
 var enemyList = [];
 
@@ -104,7 +155,6 @@ function storm(speed){
 
 };
 
-
 var missileImage = new Image();
 missileImage.src = "graphics/Missile2.png";
 
@@ -135,14 +185,6 @@ function init(level){
 	stormA.y = randomYPosition();
 	enemyList.push(stormA);
 
-	var missileA = new missile();
-	missileA.y = randomYPosition();
-	enemyList.push(missileA);
-
-
-	nextLevel = level + 1;
-	currentLevel = level;
-
 	let gooseTimerLength = 8000;
 	let sendGeese = true;
 	let gooseSpeed = 1;
@@ -150,69 +192,31 @@ function init(level){
 	let stormTimerLength = 9000;
 	let sendStorms = true;
 	let stormSpeed = 1;
-	
-	let missileTimerLength = 7000;
-	let sendMissiles = false;
-	let missileSpeed = 5;
 
-	if(level === 2) gooseTimerLength = 7500;
-	if(level === 3) gooseTimerLength = 7000;
-	if(level === 4){
-		planeImage.src = "graphics/p51.png";
-		gooseTimerLength = 6500;
-		sendMissiles = true;
-	}
-	if(level === 5){
-		planeImage.src = "graphics/p51.png";
-		gooseTimerLength = 6000;
-		gooseSpeed = 1;
-		sendMissiles = true;
-		missileTimerLength = 5000;
-	}
-	if(level === 6){
-		planeImage.src = "graphics/p51.png";
-		gooseTimerLength = 900;
-		gooseSpeed = 2;
-		sendMissiles = true;
-		missileTimerLength = 4200;
-		missileSpeed = 7;
-	}
-	if(level === 7){
-		planeImage.src = "graphics/p51.png";
-		gooseTimerLength = 900;
-		gooseSpeed = 3;
-		sendMissiles = true;
-		missileTimerLength = 3800;
-		missileSpeed = 9;
-	}
-
-	if(level === 8){
-		planeImage.src = "graphics/p51.png";
-		gooseTimerLength = 900;
-		gooseSpeed = 3;
-		sendMissiles = true;
-		missileTimerLength = 3800;
-		missileSpeed = 9;
-	}
-
-	missileTimer = setInterval(function(){makeAMissile(missileSpeed)},missileTimerLength);
 	gooseTimer = setInterval(function(){makeAGoose(gooseSpeed)},gooseTimerLength);
 	stormTimer = setInterval(function(){makeAStorm(stormSpeed)},stormTimerLength);
 
 	timer = setInterval(draw, 10);
-	setInterval(domRedraw,500);
+	domTimer = setInterval(domRedraw,500);
 
-  	//console.log(ctx.canvas.height);
+  	adjustScreenSize();
+
+  	airplane.y = ctx.canvas.height - airplane.height - 10;
+
+  	document.querySelector('#canvas').style.backgroundColor = timesOfDay[timeOfDay].skyColour;
 
 };
 
-
+function adjustScreenSize(){
+	ctx.canvas.width  = window.innerWidth;
+  	ctx.canvas.height = window.innerHeight;
+  	airport.y = ctx.canvas.height - airport.height;
+  	airport.x = 0;
+}
 
 
 window.addEventListener('resize',function(event){
-	ctx.canvas.width  = window.innerWidth;
-  	ctx.canvas.height = window.innerHeight;
-
+	adjustScreenSize();
 });
 
 window.addEventListener('keydown', function(event){
@@ -225,10 +229,14 @@ window.addEventListener('keydown', function(event){
 			airplane.y += 10;
 			break;
 		case 37:
-			airplane.x -= 5;
+			currentSpeed -= maxSpeed / 3;
+			if (currentSpeed < 0) currentSpeed = 0;
+			//airplane.x -= 5;
 			break;
 		case 39:
-			airplane.x += 10;
+			currentSpeed += maxSpeed / 3;
+			if(currentSpeed > maxSpeed) maxSpeed;
+			//airplane.x += 10;
 			break;
 	}
 
@@ -253,18 +261,12 @@ function domRedraw(){
 	$('.casualtiesMeter').text(passengers.casualties + " of " + passengers.maxCasualties  + " passengers have died");
 }
 
-if(passengers.casualties === 2){
-	function youlose(){
-		clearInterval(timer);
-		window.location = 'lost.html';
-}
+if(passengers.casualties === planes[planeName].maxCasualties){
+	youlose();
 }
 
-if(happiness === 0){
-	function youlose(){
-	clearInterval(timer);
-	window.location = 'lost.html';
-}
+if(passengers.happiness === 0){
+	youlose();
 }
 
 
@@ -273,7 +275,7 @@ function draw(){
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 	if(!flyingKeys){
-		airplane.y += 1;
+		//airplane.y += 1;
 		passengers.happiness -= 1;
 	}else{
 		passengers.happiness += 1;
@@ -311,34 +313,15 @@ function draw(){
 		} 
 	}
 
+	airplane.x += currentSpeed * 0.01;
+
 	ctx.drawImage(airport.img, airport.x, airport.y, airport.width, airport.height); 
 	ctx.drawImage(airport.img, airport.x, airport.y, airport.width, airport.height); 
-	ctx.drawImage(xborder1.img, xborder1.x, xborder1.y, xborder1.width, xborder1.height);
-	ctx.drawImage(yBorderTop.img, yBorderTop.x, yBorderTop.y, yBorderTop.width, yBorderTop.height);
-	ctx.drawImage(yBorderBottom.img, yBorderBottom.x, window.innerHeight, yBorderBottom.width, yBorderBottom.height);
 	ctx.drawImage(airplane.img, airplane.x, airplane.y, airplane.width, airplane.height);
 
-	
-	//CHECK IF THE PLANE HAS TOUCHED THE AIRPORT
-	if(detectCollision(airplane,airport)){
-		clearInterval(timer);
-		if(nextLevel === 9) window.location = 'winner.html';
-		else window.location = 'level'+ nextLevel +'.html';	
-	}
 
 	//CHECK IF THE PLANE HAS TOUCHED THE BORDERS
 
-	if(detectCollision(airplane,xborder1)){
-		restartLevel();
-	} 
-
-	if(detectCollision(airplane,yBorderBottom)){
-		restartLevel();	
-	} 
-
-	if(detectCollision(airplane,yBorderTop)){
-		restartLevel();	
-	} 
 }
 
 function restartLevel(){
@@ -368,15 +351,6 @@ function makeAStorm(speed){
 	enemyList.push(newStorm);
 }
 
-function makeAMissile(speed){
-	var newMissile = new missile();
-	newMissile.y = randomYPosition();
-	newMissile.x = ctx.canvas.width;
-	newMissile.speed = speed;
-	newMissile.hasCollided = false;
-	enemyList.push(newMissile);
-}
-
 function randomYPosition(){
 	return Math.floor(Math.random() * ctx.canvas.height);
 }
@@ -396,5 +370,5 @@ function detectCollision(object1, object2){
 
 function youlose(){
 	clearInterval(timer);
-	window.location = 'lost.html';
+	window.location = 'crash.html';
 }

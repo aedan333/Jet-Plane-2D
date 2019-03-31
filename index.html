@@ -26,35 +26,29 @@
 		<link rel="apple-touch-icon" sizes="180x180" href="graphics/JP2D_logo.png">
 		<link rel="apple-touch-startup-image" href="graphics/JP2D_logo.png" />
 
-		</head>
-
-		<body>
-		
-
-
-		<header>
-	
-					<img id="departures" src="graphics/IMG_1678.png" width="25">
-					
-		
-		</header>
-
-		
-		
-
-</head>
-<style>
+		<style>
 body {
+	width: 100vw;
+	height: 100vh;
   font-family: "Lato", sans-serif;
+  display: grid;
+  grid-template-columns: 200px 200px 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: "sidebar header header" "sidebar config preview"
+}
+
+header{
+	grid-area: header;
+	background-color: #284a7f;
+	text-align: center;
+}
+
+header img{
+	width: 200px;
 }
 
 .sidenav {
-  height: 100%;
-  width: 200px;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
+  grid-area: sidebar;
   background-color: #111;
   overflow-x: hidden;
   padding-top: 20px;
@@ -80,25 +74,105 @@ body {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
+
+.configuration{
+	grid-area: config;
+	padding: 20px;
+}
+
+.configuration select{
+	width: 150px;
+	background-color: #213d68;
+	border-radius: 4px;
+	padding: 5px 5px;
+	border: none;
+	color: white;
+}
+
+.preview{
+	grid-area: preview;
+}
+
+.preview img{
+	width: 300px;
+}
+
+button{
+	border-radius: 4px;
+	background-color: #213d68;
+	padding: 5px 10px;
+}
 </style>
-</head>
-<body>
+
+<script type="text/javascript">
+	
+	document.addEventListener('DOMContentLoaded',function() {
+	    document.querySelector('#aircraft-select').onchange=changeAirplane;
+	},false);
+
+	function changeAirplane(event) {
+	    // You can use “this” to refer to the selected element.
+	    if(!event.target.value) console.error('Please Select One');
+	    else document.querySelector('#preview-image').src = './graphics/' + event.target.value + '.png';
+	}
+
+	function flybutton(event){
+		window.location.href ='fly.html?plane='+document.querySelector('#aircraft-select').value + '&time=' + document.querySelector('#time-select').value + '&airport=' + document.querySelector('#airport-select').value;
+	}
+
+</script>
+
+		</head>
+
+		<body>
+		
+
+
+		<header>
+	
+					<img  src="graphics/IMG_1678.png" width="25">
+					
+		
+		</header>
 
 <div class="sidenav">
-  <a href="level1.html">Beginner</a>
-  <a href="fighterpilot1.html">Air Force</a>
-  <a href="#">Airline Pilot</a>
-  <a href="#">Pilot</a>
-  <a href="planes">Aircraft</a>
+  <a href="level1.html">Training</a>
+  <a href="planes.html">Aircraft</a>
   <a href="help.html">Help</a>
-  <a href="signup.html">Sign Up</a>
 </div>
 
 
-</script>
-	<ul class="main-menu">
-			
-		</ul>
+	<div class="configuration">
+		<select id="aircraft-select">
+			<option value="172">172</option>
+			<option value="747">747-8i</option>
+			<option value="A318">A318</option>
+			<option value="p51">P-51</option>
+			<option value="f22">F-22</option>
+			<option value="c130">C-130</option>
+		</select>
+
+		<select id="time-select">
+			<option value="0800">8AM</option>
+			<option value="1200">12PM</option>
+			<option value="1700">5PM</option>
+			<option value="2400">12AM</option>
+		</select>
+
+		<select id="airport-select">
+			<option value="intlairport">Intl' Airport</option>
+			<option value="aareairport">AARE Airport</option>
+			<option value="smallairport">Banana Fields Airport</option>
+			<option value="stmaarten">Princess Juliana Intl'</option>
+		</select>
+
+
+	</div>
+	<div class="preview">
+		<img id="preview-image" src="graphics/172.png"/>
+
+		<button onclick="flybutton()" class="fly">Fly</button>
+	</div>
 
 		<footer>Copyright &copy <script type="text/javascript">document.write(new Date().getFullYear());</script> Aedan</footer>
 

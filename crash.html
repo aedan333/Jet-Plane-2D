@@ -5,11 +5,12 @@
 <html lang="en-CA">
 	<head>
 	<meta name="google-site-verification" content="GVXLFkkIX-ZbkLJOAK4cCx6PTD7b9k9aUOUWaTrKFn8" />
-		<title>Level 5</title>
-		<link rel="stylesheet" type="text/css" href="styles/levels.css">
+		<title>Crash</title>
+		<link rel="stylesheet" type="text/css" href="styles2.css">
 
 		<meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=8; IE=9; IE=edge">
+
 
 					<!--favicons-->
 		<link rel="icon" type="image/png" href="graphics/JP2D_logo.png" sizes="32x32">
@@ -25,30 +26,40 @@
 		<link rel="apple-touch-icon" sizes="180x180" href="graphics/JP2D_logo.png">
 		<link rel="apple-touch-startup-image" href="graphics/JP2D_logo.png" />
 
+		<style type="text/css">
+			body, html {
+  				font-family: "Lato", sans-serif;
+				margin: 0px;
+				background: #284a7f;
+			}
+
+			.crash{
+				padding: 10px;
+				margin: 10px; 
+			} 
+
+			button{
+				border: none;
+				background-color: #213d68;
+				padding: 5px 10px;
+			}
+		</style>
+		<script type="text/javascript">
+			function flyagainbutton(event){
+			window.location.href ='index.html';
+			}
+		</script>
 		
 	</head>
 
-	<body onload="init(5);">
-	
+	<body>
 
-		<canvas id="canvas">
+		<div class="crash">
+			<p>YOU CRASHED! Sorry about that!</p>
 
-		</canvas>
-
-		<div class="meters">
-			<div class="happinessMeter">
-				<div class="happinessMeter--bar"></div>
-				<div class="happinessMeter--readout"></div>
-			</div>
-			<div class="damageMeter">
-
-			</div>
-			<div class="casualtiesMeter">
-
-			</div>
+			<button onclick="flyagainbutton()" class="fly-again">Fly Again</button>
 		</div>
 
-		<script type="text/javascript" src="scripts/jquery-3.1.1.min.js"></script>     
-        <script type="text/javascript" src="scripts/levels.js"></script>
+
 	</body>
 </html>
