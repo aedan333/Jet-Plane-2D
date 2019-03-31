@@ -314,7 +314,8 @@ function draw(){
 	}
 
 	airplane.x += currentSpeed * 0.01;
- 
+
+	ctx.drawImage(airport.img, airport.x, airport.y, airport.width, airport.height); 
 	ctx.drawImage(airport.img, airport.x, airport.y, airport.width, airport.height); 
 	ctx.drawImage(airplane.img, airplane.x, airplane.y, airplane.width, airplane.height);
 
