@@ -1,6 +1,6 @@
 # Blocky-Airplane-Tree
 
-Blocky Airplane Tree is a simple layout game about airplanes. Use the arrow keys to control the plane and avoid the obstacles.
+JetPlane 2D is a simple two dimensional game about airplanes. Use the arrow keys to control the plane and avoid the obstacles.
 
 
 
@@ -15,7 +15,7 @@ Blocky Airplane Tree is a simple layout game about airplanes. Use the arrow keys
 
 MIT License
 
-Copyright (c) 2017 Aedan
+Copyright (c) 2020 Aedan
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
